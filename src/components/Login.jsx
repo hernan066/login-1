@@ -6,22 +6,27 @@ export const Login = () => {
   
     const [email, setEmail] = useState("");
     const [pass,  setPass] = useState("");
+    const [error, setError] = useState(null);
   
     //procesarDatos
     const handleSubmit = (e)=>{
         e.preventDefault();
         if(!email.trim()){
-            console.log('Ingrese email');
-            return
-        }
+            //console.log('Ingrese email');
+            setError('Ingrese email');
+            return;
+        };
         if(!pass.trim()){
-            console.log('Ingrese password');
-            return
-        }
+            //console.log('Ingrese password');
+            setError('Ingrese password');
+            return;
+        };
         if(pass.length < 6){
-            console.log('El password debe tener 6 caracteres minimo');
-            return
-        }
+            //console.log('El password debe tener 6 caracteres minimo');
+            setError('El password debe tener 6 caracteres minimo');
+            return;
+        };
+        setError(null);
     }
     return (
     <div className="mt-5">
@@ -30,6 +35,13 @@ export const Login = () => {
       <div className="row justify-content-center">
         <div className="col-12 col-sm-8 col-md-6 col-xl-4">
           <form onSubmit={handleSubmit}>
+            {
+                error && (
+                    <div className="alert alert-danger">{error}</div>
+                                        
+                )
+            }
+            
             <input
               className="form-control mb-2"
               type="email"
