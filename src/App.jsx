@@ -1,5 +1,6 @@
 import React from 'react';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
+import { Navbar } from './components/Navbar';
 
 
 function App() {
@@ -7,7 +8,7 @@ function App() {
     
     <Router>
         <div className="container">
-          navbar...
+          <Navbar />
             <Switch>
                 <Route path="/login">
                   login...
@@ -15,7 +16,7 @@ function App() {
                 <Route path="/admin">
                   admin...
                 </Route>
-                <Route path="/">
+                <Route path="/" exact>
                   Inicio...
                 </Route>
             </Switch>
