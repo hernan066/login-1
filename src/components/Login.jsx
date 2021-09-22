@@ -7,6 +7,7 @@ export const Login = () => {
     const [email, setEmail] = useState("");
     const [pass,  setPass] = useState("");
     const [error, setError] = useState(null);
+    const [esRegistro, setEsRegistro] = useState(true);
   
     //procesarDatos
     const handleSubmit = (e)=>{
@@ -30,7 +31,11 @@ export const Login = () => {
     }
     return (
     <div className="mt-5">
-      <h3 className="text-center"> Registro de usuario</h3>
+      <h3 className="text-center"> 
+        {
+            esRegistro ? 'Registro de usuarios' : 'Login de acceso'
+        }
+      </h3>
       <hr />
       <div className="row justify-content-center">
         <div className="col-12 col-sm-8 col-md-6 col-xl-4">
@@ -58,11 +63,21 @@ export const Login = () => {
             />
 
             <div className="d-grid gap-2">
-              <button className="btn btn-dark btn-lg mb-2">Resgistrarse</button>
+              <button className="btn btn-dark btn-lg mb-2" type= "submit">
+                    {
+                        esRegistro ? 'Registrarse' : 'Ingresar'
+                    }
+              </button>
             </div>
             <div className="d-grid gap-2">
-              <button className="btn btn-info btn-sm ">
-                Ya tienes cuenta?
+              <button 
+                className="btn btn-info btn-sm "
+                onClick={()=> setEsRegistro(!esRegistro)}
+                type="button"
+              >
+                {
+                    esRegistro ? 'Ya estas registrado?' : 'No tienes cuenta?'
+                }
               </button>
             </div>
           </form>
