@@ -11,10 +11,10 @@ import { getFirestore, collection, addDoc } from "firebase/firestore";
 import { withRouter } from "react-router";
 
 const Login = (props) => {
-  const [email, setEmail] = useState("prueba@prueba.com");
-  const [pass, setPass] = useState("123456");
+  const [email, setEmail] = useState("");
+  const [pass, setPass] = useState("");
   const [error, setError] = useState(null);
-  const [esRegistro, setEsRegistro] = useState(true);
+  const [esRegistro, setEsRegistro] = useState(false);
 
   //procesarDatos
   const handleSubmit = (e) => {
@@ -47,9 +47,9 @@ const Login = (props) => {
     try {
       //login de usuario
       const auth = getAuth(app);
-      const res = await signInWithEmailAndPassword(auth, email, pass);
+      await signInWithEmailAndPassword(auth, email, pass);
 
-      console.log(res.user);
+      //console.log(res.user);
 
       //limpia formulario
       setEmail("");
@@ -110,8 +110,8 @@ const Login = (props) => {
       <h3 className="text-center">
         {esRegistro ? "Registro de usuarios" : "Login de acceso"}
       </h3>
-      <hr />
-      <div className="row justify-content-center">
+      
+      <div className="login row justify-content-center mt-3">
         <div className="col-12 col-sm-8 col-md-6 col-xl-4">
           <form onSubmit={handleSubmit}>
             {error && <div className="alert alert-danger">{error}</div>}
@@ -132,7 +132,7 @@ const Login = (props) => {
             />
 
             <div className="d-grid gap-2">
-              <button className="btn btn-dark btn-lg mb-2" type="submit">
+              <button className="btn btn-secondary btn-lg mb-2" type="submit">
                 {esRegistro ? "Registrarse" : "Ingresar"}
               </button>
             </div>

@@ -10,10 +10,10 @@ const Admin = ({ history }) => {
     const auth = getAuth();
     const user1 = auth.currentUser;
     if (user1) {
-      console.log("Existe un usuario");
+      //console.log("Existe un usuario");
       setUser(user1);
     } else {
-      console.log("No existe usuario");
+      //console.log("No existe usuario");
       history.push("/login");
     }
   }, [history]);

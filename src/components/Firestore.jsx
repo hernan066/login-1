@@ -15,7 +15,7 @@ function Firestore({user}) {
             const datos = await getDocs(collection(db, user.uid));
             datos.forEach((documento)=>{
             const arrayData = datos.docs.map(doc => ({id: doc.id, ...doc.data()}))
-            console.log(arrayData);
+            //console.log(arrayData);
             setTareas(arrayData);
           })
       }
@@ -48,7 +48,7 @@ function Firestore({user}) {
       console.log(error)
     }
     
-    console.log(nuevaTarea)
+    //console.log(nuevaTarea)
   }
 
   const eliminar = async (id)=>{
@@ -104,7 +104,7 @@ function Firestore({user}) {
   return (
     <div className="container mt-3">
       <h1>CRUD</h1>
-      <hr />
+      <br />
       <div className="row">
         <div className="col-md-6">
         <h3>Lista de tareas</h3>
@@ -145,7 +145,7 @@ function Firestore({user}) {
                 value={nuevaTarea}
             />
             <button
-              className={ modoEdicion ? "btn btn-warning btn-block" : "btn btn-dark btn-block"}
+              className={ modoEdicion ? "btn btn-warning btn-block" : "btn btn-secondary btn-block"}
               type="submit"
             >
               {

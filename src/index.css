@@ -1,0 +1,14 @@
+body{
+    background: rgb(33,36,43);
+    background: linear-gradient(180deg, rgba(33,36,43,1) 0%, rgba(38,35,35,1) 97%);
+    height: 100vh;
+    color: white;
+}
+.navbar{
+    border-bottom: white 1px solid;
+}
+
+h1{
+    text-align: center;
+    letter-spacing: 4px;
+}

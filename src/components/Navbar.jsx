@@ -23,7 +23,7 @@ const Navbar = ({ history, firebaseUser }) => {
           </NavLink>
           {firebaseUser !== null ? (
             <NavLink className="btn btn-dark mr-2" to="/admin">
-              Admin
+              Tareas
             </NavLink>
           ) : null}
           {firebaseUser !== null ? (
