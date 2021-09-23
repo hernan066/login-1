@@ -3,14 +3,16 @@ import {
   getAuth,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  
 } from "firebase/auth";
+
 import app from "../firebase";
-import { getFirestore, doc, setDoc } from "firebase/firestore";
+import { getFirestore, collection, addDoc } from "firebase/firestore";
 import { withRouter } from "react-router";
 
 const Login = (props) => {
-  const [email, setEmail] = useState("");
-  const [pass, setPass] = useState("");
+  const [email, setEmail] = useState("prueba@prueba.com");
+  const [pass, setPass] = useState("123456");
   const [error, setError] = useState(null);
   const [esRegistro, setEsRegistro] = useState(true);
 
@@ -74,11 +76,17 @@ const Login = (props) => {
       //console.log(res.user)
 
       //crea la coleccion usuarios
-      await setDoc(doc(db, "usuarios", res.user.uid), {
+      /* await setDoc(doc(db, "usuarios", res.user.uid), {
         email: res.user.email,
         uid: res.user.uid,
-      });
+      }); */
 
+      //mezclado con el proyecto crud///////////////////////////
+        await addDoc(collection(db, res.user.uid), {
+        name: 'Tarea de ejemplo',
+        fecha: Date.now()
+      });
+      ////////////////////////////////////////////////////////////
       //limpia formulario
       setEmail("");
       setPass("");

@@ -14,7 +14,7 @@ const Navbar = ({ history, firebaseUser }) => {
   return (
     <div className="navbar navbar-dark bg-dark">
       <Link className="navbar-brand ms-3" to="/">
-        AUTH
+        AUTH With Firebase
       </Link>
       <div>
         <div className="d-flex">

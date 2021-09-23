@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { getAuth } from "firebase/auth";
 import { withRouter } from "react-router";
+import Firestore from "./Firestore";
 
 const Admin = ({ history }) => {
   const [user, setUser] = useState(null);
@@ -19,10 +20,10 @@ const Admin = ({ history }) => {
 
   return (
     <div>
-      <h1>Admin</h1>
-      <hr />
-      <h2>Ruta pretegida</h2>
-      {user && <h3>{user.email}</h3>}
+      
+      {user && (
+        <Firestore user={user} />
+      )}
     </div>
   );
 };
