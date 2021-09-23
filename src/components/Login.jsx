@@ -1,13 +1,16 @@
 import React, { useCallback, useState } from "react";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import  app  from "../firebase";
+import { getFirestore, doc, setDoc} from "firebase/firestore"
 
 export const Login = () => {
   const [email, setEmail] = useState("");
   const [pass, setPass] = useState("");
   const [error, setError] = useState(null);
   const [esRegistro, setEsRegistro] = useState(true);
-
+   
+  
+  
   
   
   //procesarDatos
@@ -38,8 +41,19 @@ export const Login = () => {
 const registrar = useCallback(async()=>{
     try {
         const auth = getAuth(app);
+        const db = getFirestore(app);
         const res = await createUserWithEmailAndPassword(auth, email, pass);
         console.log(res.user)
+        
+        await setDoc(doc(db, "usuarios", res.user.uid), {
+            email: res.user.email,
+            uid: res.user.uid
+          });
+          
+        
+        setEmail('')
+        setPass('')
+        setError(null)
     } catch (error) {
         console.log(error)
         if(error.code === 'auth/invalid-email'){
