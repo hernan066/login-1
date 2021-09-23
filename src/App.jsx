@@ -1,12 +1,35 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import Admin from './components/Admin';
 import Login from './components/Login'
 import { Navbar } from './components/Navbar';
-
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 
 function App() {
-  return (
+  
+  const [firabaseUser, setFirabaseUser] = useState(false);
+  
+  useEffect(() => {
+    const auth = getAuth();
+    onAuthStateChanged(auth, (user) => {
+        console.log(user);
+        if(user){
+          setFirabaseUser(user);
+        }else{
+          setFirabaseUser(null);
+        }
+    });
+  
+  }, [])
+  
+  
+  
+  
+  
+  
+  return firabaseUser !== false ? (
+    
+    
     
     <Router>
         <div className="container">
@@ -25,7 +48,9 @@ function App() {
         </div>
       
     </Router>
-  );
+  ): (
+    <p>Cargando...</p>
+  )
 }
 
 export default App;
