@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { collection, getDocs, addDoc, doc, deleteDoc, updateDoc, getFirestore } from "firebase/firestore";
-
+import moment from 'moment';
+import 'moment/locale/es' // Pasar a español
 
 function Firestore({user}) {
   
@@ -112,7 +113,8 @@ function Firestore({user}) {
             {
               tareas.map(item=>(
                 <li className="list-group-item" key={item.id}>
-                  {item.name}
+                  
+                  <b>Tarea :</b> {item.name} <br /><b>Creado :</b> { moment(item.fecha).calendar()   }
                 
                     <button 
                         className="btn btn-danger btn-sm float-end"
