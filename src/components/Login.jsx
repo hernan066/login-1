@@ -144,6 +144,17 @@ const Login = (props) => {
               >
                 {esRegistro ? "Ya estas registrado?" : "No tienes cuenta?"}
               </button>
+             {/*  Recuperar contraseña//////////////////// */}
+              
+              {
+                !esRegistro ? (
+                  <button className="btn btn-danger btn-sm mb-2" type="button">
+                  Recuperar contraseña
+                </button>
+                ): null
+              }
+              
+              
             </div>
           </form>
         </div>
