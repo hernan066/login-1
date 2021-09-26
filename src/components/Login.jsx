@@ -148,7 +148,11 @@ const Login = (props) => {
               
               {
                 !esRegistro ? (
-                  <button className="btn btn-danger btn-sm mb-2" type="button">
+                  <button 
+                  className="btn btn-danger btn-sm mb-2" 
+                  type="button"
+                  onClick={()=> props.history.push('/reset')}
+                  >
                   Recuperar contraseña
                 </button>
                 ): null
