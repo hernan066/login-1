@@ -1,6 +1,8 @@
-import React, { useState } from 'react'
+import React, { useCallback, useState } from 'react';
+import { getAuth, sendPasswordResetEmail } from "firebase/auth";
+import { withRouter } from "react-router";
 
-const Reset = () => {
+const Reset = (props) => {
     
     const [email, setEmail] = useState("");
     const [error, setError] = useState(null);
@@ -12,24 +14,23 @@ const Reset = () => {
           setError("Ingrese email");
           return;
         }
-        if (!pass.trim()) {
-          //console.log('Ingrese password');
-          setError("Ingrese password");
-          return;
-        }
-        if (pass.length < 6) {
-          //console.log('El password debe tener 6 caracteres minimo');
-          setError("El password debe tener 6 caracteres minimo");
-          return;
-        }
+        
         setError(null);
-    
-        if (esRegistro) {
-          registrar();
-        } else {
-          login();
-        }
+        recuperar();
+       
       };
+
+      const recuperar = useCallback(async()=>{
+            try {
+                const auth = getAuth();
+                await sendPasswordResetEmail(auth, email);
+                console.log("Correo enviado");
+                props.history.push('/login');
+            } catch (error) {
+                console.log(error);
+                setError(error.message);
+            }
+      }, [email, props.history]);
     
     
     return (
@@ -53,7 +54,7 @@ const Reset = () => {
               
   
               <div className="d-grid gap-2">
-                <button className="btn btn-secondary btn-lg mb-2" type="submit">
+                <button className="btn btn-secondary btn-sm mb-2" type="submit">
                   Reiniciar contraseña
                 </button>
               </div>
@@ -66,4 +67,4 @@ const Reset = () => {
     )
 }
 
-export default Reset
+export default withRouter(Reset)
