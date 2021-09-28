@@ -5,6 +5,7 @@ import Login from "./components/Login";
 import Navbar from "./components/Navbar";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import Reset from "./components/Reset";
+import Inicio from "./components/Inicio";
 
 function App() {
   const [firebaseUser, setFirebaseUser] = useState(false);
@@ -36,7 +37,7 @@ function App() {
             <Reset />
           </Route>
           <Route path="/" exact>
-            Inicio...
+            <Inicio />
           </Route>
         </Switch>
       </div>
